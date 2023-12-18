@@ -15,8 +15,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -29,99 +27,15 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.example.ridemate.R
-import com.example.ridemate.ui.theme.errorRed
 import com.example.ridemate.ui.theme.lightGrey20
-import com.example.ridemate.ui.theme.primaryBlack
 import com.example.ridemate.ui.theme.white
 
 @Composable
-fun NVCOutlinedEmailTextField(
-    modifier: Modifier = Modifier,
-    label: String = stringResource(id = R.string.email),
-    isEmailValid: Boolean = true,
-    textSize: TextUnit = 14.sp,
-    textColor: Color = lightGrey20
-) {
-
-    var email by remember { mutableStateOf("") }
-
-    OutlinedTextField(
-        value = email,
-        onValueChange = {
-            email = it
-        },
-        label = { TextMedium(text = label, color = textColor, fontSize = textSize) },
-        keyboardOptions = KeyboardOptions.Default.copy(
-            keyboardType = KeyboardType.Email, imeAction = ImeAction.Done
-        ),
-        isError = !isEmailValid,
-        colors = OutlinedTextFieldDefaults.colors(
-            cursorColor = if (isEmailValid) primaryBlack else errorRed,
-            focusedBorderColor = if (isEmailValid) lightGrey20 else errorRed,
-            unfocusedBorderColor = if (isEmailValid) lightGrey20 else errorRed,
-        ),
-        modifier = modifier
-            .fillMaxWidth()
-            .padding(start = 16.dp, end = 16.dp)
-    )
-
-    if (!isEmailValid) {
-        TextMedium(
-            text = stringResource(id = R.string.please_enter_a_valid_email_address),
-            color = errorRed,
-            modifier = Modifier.padding(top = 4.dp)
-        )
-    }
-}
-
-@Composable
-fun NVCOutlinedPasswordTextField(
-    modifier: Modifier = Modifier,
-    label: String = stringResource(id = R.string.password),
-    isPasswordValid: Boolean = true,
-    textColor: Color = lightGrey20,
-    textSize: TextUnit = 14.sp
-) {
-    var password by remember { mutableStateOf("") }
-
-    OutlinedTextField(
-        value = password,
-        onValueChange = { password = it },
-        label = { TextMedium(text = label, color = textColor, fontSize = textSize) },
-        keyboardOptions = KeyboardOptions.Default.copy(
-            keyboardType = KeyboardType.Password, imeAction = ImeAction.Done
-        ),
-        visualTransformation = PasswordVisualTransformation(),
-        isError = !isPasswordValid,
-        colors = OutlinedTextFieldDefaults.colors(
-            cursorColor = if (isPasswordValid) primaryBlack else errorRed,
-            focusedBorderColor = if (isPasswordValid) lightGrey20 else errorRed,
-            unfocusedBorderColor = if (isPasswordValid) lightGrey20 else errorRed,
-        ),
-        modifier = modifier
-            .fillMaxWidth()
-            .padding(start = 16.dp, end = 16.dp)
-    )
-
-    if (!isPasswordValid) {
-        Text(
-            text = "Password should be at least 8 characters",
-            color = Color.Red,
-            modifier = Modifier.padding(top = 4.dp)
-        )
-    }
-}
-
-@Composable
-fun NVCOutlinedTextField(
+fun OutlinedTextField(
     modifier: Modifier = Modifier, hint: String = "", onValueChange: (String) -> Unit
 ) {
     var value by remember { mutableStateOf("") }
@@ -148,6 +62,44 @@ fun NVCOutlinedTextField(
             focusedIndicatorColor = Color.Transparent,
             unfocusedIndicatorColor = Color.Transparent,
         )
+    )
+}
+
+@Composable
+fun OutlinedMobileTextField(
+    modifier: Modifier = Modifier,
+    hint: String = stringResource(id = R.string.enter_mobile_number),
+    onValueChange: (String) -> Unit
+) {
+    var value by remember { mutableStateOf("") }
+
+    TextField(
+        value = value,
+        onValueChange = {
+            if (it.length <= 10) {
+                value = it
+                onValueChange(it)
+            }
+        },
+        placeholder = {
+            Text(text = hint, color = Color.Gray)
+        },
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(start = 16.dp, end = 16.dp)
+            .border(1.dp, lightGrey20, shape = RoundedCornerShape(8.dp)),
+        singleLine = true,
+        colors = TextFieldDefaults.colors(
+            focusedContainerColor = Color.Transparent,
+            unfocusedContainerColor = Color.Transparent,
+            disabledContainerColor = Color.Transparent,
+            cursorColor = Color.Black,
+            focusedIndicatorColor = Color.Transparent,
+            unfocusedIndicatorColor = Color.Transparent,
+        ),
+        keyboardOptions = KeyboardOptions(
+            keyboardType = KeyboardType.Number
+        ),
     )
 }
 
@@ -207,9 +159,8 @@ fun NVCOutlinedTextBoxPreview() {
             .padding(10.dp)
     ) {
         Column {
-            NVCOutlinedEmailTextField()
-            NVCOutlinedPasswordTextField()
-            NVCOutlinedTextField(hint = "hint", onValueChange = {}, modifier = Modifier)
+            OutlinedTextField(onValueChange = {})
+            OutlinedMobileTextField(onValueChange = {})
             OTPTextField()
         }
     }

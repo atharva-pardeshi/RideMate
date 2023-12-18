@@ -15,8 +15,6 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -26,15 +24,12 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.example.ridemate.R
 import com.example.ridemate.ui.components.NVCButton
-import com.example.ridemate.ui.components.NVCOutlinedEmailTextField
-import com.example.ridemate.ui.components.NVCOutlinedPasswordTextField
-import com.example.ridemate.ui.components.SwitchButton
+import com.example.ridemate.ui.components.OutlinedMobileTextField
 import com.example.ridemate.ui.components.TextMedium
 import com.example.ridemate.ui.components.TitleBold
 import com.example.ridemate.ui.components.UserAgreementText
 import com.example.ridemate.ui.theme.RideMateTheme
 import com.example.ridemate.ui.theme.grey
-import com.example.ridemate.ui.theme.lightGrey20
 import com.example.ridemate.ui.theme.primaryBrown
 import com.example.ridemate.ui.theme.white
 
@@ -67,35 +62,12 @@ fun LoginScreen(navController: NavController) {
                 )
 
                 Spacer(modifier = Modifier.height(30.dp))
-                NVCOutlinedEmailTextField(
-                    modifier = Modifier.fillMaxWidth()
-                )
+                OutlinedMobileTextField(
+                    modifier = Modifier.fillMaxWidth(),
+                    onValueChange = {
 
-                Spacer(modifier = Modifier.height(24.dp))
-                NVCOutlinedPasswordTextField(
-                    modifier = Modifier.fillMaxWidth()
+                    }
                 )
-            }
-
-            Spacer(modifier = Modifier.height(16.dp))
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(start = 16.dp, end = 16.dp),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceBetween
-            ) {
-                SwitchButton(
-                    text = stringResource(id = R.string.remember_me),
-                    textColor = lightGrey20,
-                )
-
-                TextMedium(text = stringResource(id = R.string.forgot_password),
-                    color = lightGrey20,
-                    fontSize = 14.sp,
-                    onTextClick = {
-                        navController.navigate("Forgot Password Screen")
-                    })
             }
 
             Spacer(modifier = Modifier.height(30.dp))
