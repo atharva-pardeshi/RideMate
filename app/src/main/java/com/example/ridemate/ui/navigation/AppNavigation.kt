@@ -8,76 +8,76 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.ridemate.ui.presentation.onbording.LoginScreen
 
 @Composable
 fun AppNavigation() {
 
     val navController = rememberNavController()
 
-    NavHost(navController = navController, startDestination = "Login Screen",
-        enterTransition = {
-            slideIntoContainer(
-                towards = AnimatedContentTransitionScope.SlideDirection.Start,
-                animationSpec = tween(durationMillis = 500)
-            )
-        }, exitTransition = {
-            fadeOut(
+    NavHost(navController = navController, startDestination = "Login Screen", enterTransition = {
+        slideIntoContainer(
+            towards = AnimatedContentTransitionScope.SlideDirection.Start,
+            animationSpec = tween(durationMillis = 500)
+        )
+    }, exitTransition = {
+        fadeOut(
 //            towards = AnimatedContentTransitionScope.SlideDirection.End,
-                animationSpec = tween(durationMillis = 500)
-            )
-        }, popEnterTransition = {
-            fadeIn(
+            animationSpec = tween(durationMillis = 500)
+        )
+    }, popEnterTransition = {
+        fadeIn(
 //            towards = AnimatedContentTransitionScope.SlideDirection.Start,
-                animationSpec = tween(durationMillis = 500)
-            )
-        }, popExitTransition = {
-            slideOutOfContainer(
-                towards = AnimatedContentTransitionScope.SlideDirection.End,
-                animationSpec = tween(durationMillis = 500)
-            )
-        }) {
+            animationSpec = tween(durationMillis = 500)
+        )
+    }, popExitTransition = {
+        slideOutOfContainer(
+            towards = AnimatedContentTransitionScope.SlideDirection.End,
+            animationSpec = tween(durationMillis = 500)
+        )
+    }) {
         composable("Login Screen") {
             LoginScreen(navController = navController)
         }
 
         composable("Forgot Password Screen") {
-            ForgotPassword(navController = navController)
+//            ForgotPassword(navController = navController)
         }
 
         composable("SignUp Screen") {
-            SignUp(navController = navController)
+//            SignUp(navController = navController)
         }
 
         composable("Home Screen") {
-            Home(navController = navController)
+//            Home(navController = navController)
         }
 
         composable("Onboarding Hello Screen") {
-            OnboardingHello(navController = navController)
+//            OnboardingHello(navController = navController)
         }
 
         composable("Onboarding TellUs Body Screen") {
-            OnboardingTellUsBody(navController = navController)
+//            OnboardingTellUsBody(navController = navController)
         }
 
         composable("Onboarding TellUs Health Screen") {
-            OnboardingTellUsHealth(navController = navController)
+//            OnboardingTellUsHealth(navController = navController)
         }
 
         composable("Select Provider Screen") {
-            SelectProvider(navController = navController)
+//            SelectProvider(navController = navController)
         }
 
         composable("Thank You Screen") {
-            ThankYou(navController = navController)
+//            ThankYou(navController = navController)
         }
 
         composable("Verify OTP Screen") {
-            VerifyOTP(navController = navController)
+//            VerifyOTP(navController = navController)
         }
 
         composable("New Password Screen") {
-            SetNewPassword(navController = navController)
+//            SetNewPassword(navController = navController)
         }
     }
 }

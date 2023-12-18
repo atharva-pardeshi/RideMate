@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
@@ -22,7 +23,20 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.ridemate.R
+import com.example.ridemate.ui.components.NVCButton
+import com.example.ridemate.ui.components.NVCOutlinedEmailTextField
+import com.example.ridemate.ui.components.NVCOutlinedPasswordTextField
+import com.example.ridemate.ui.components.SwitchButton
+import com.example.ridemate.ui.components.TextMedium
+import com.example.ridemate.ui.components.TitleBold
+import com.example.ridemate.ui.components.UserAgreementText
+import com.example.ridemate.ui.theme.RideMateTheme
+import com.example.ridemate.ui.theme.grey
+import com.example.ridemate.ui.theme.lightGrey20
+import com.example.ridemate.ui.theme.primaryBrown
+import com.example.ridemate.ui.theme.white
 
 @Composable
 fun LoginScreen(navController: NavController) {
@@ -40,24 +54,24 @@ fun LoginScreen(navController: NavController) {
                 Spacer(modifier = Modifier.height(80.dp))
 
                 Image(
-                    painter = painterResource(id = R.drawable.ic_launcher),
-                    contentDescription = "App Logo",
-                    colorFilter = ColorFilter.tint(color = Color.Black)
+                    modifier = Modifier.fillMaxWidth(),
+                    painter = painterResource(id = R.drawable.ic_launcher_adaptive_fore),
+                    contentDescription = "App Logo"
                 )
 
                 Spacer(modifier = Modifier.height(80.dp))
                 TitleBold(
                     text = stringResource(id = R.string.sign_in),
                     fontSize = 20.sp,
-                    color = primaryBlue
+                    color = primaryBrown
                 )
 
-                Spacer(modifier = Modifier.height(dimen_30))
+                Spacer(modifier = Modifier.height(30.dp))
                 NVCOutlinedEmailTextField(
                     modifier = Modifier.fillMaxWidth()
                 )
 
-                Spacer(modifier = Modifier.height(dimen_24))
+                Spacer(modifier = Modifier.height(24.dp))
                 NVCOutlinedPasswordTextField(
                     modifier = Modifier.fillMaxWidth()
                 )
@@ -73,18 +87,18 @@ fun LoginScreen(navController: NavController) {
             ) {
                 SwitchButton(
                     text = stringResource(id = R.string.remember_me),
-                    textColor = grey20,
+                    textColor = lightGrey20,
                 )
 
                 TextMedium(text = stringResource(id = R.string.forgot_password),
-                    color = grey20,
+                    color = lightGrey20,
                     fontSize = 14.sp,
                     onTextClick = {
                         navController.navigate("Forgot Password Screen")
                     })
             }
 
-            Spacer(modifier = Modifier.height(dimen_30))
+            Spacer(modifier = Modifier.height(30.dp))
             NVCButton(modifier = Modifier
                 .fillMaxWidth()
                 .padding(start = 16.dp, end = 16.dp),
@@ -94,19 +108,19 @@ fun LoginScreen(navController: NavController) {
                     navController.navigate("Home Screen")
                 })
 
-            Spacer(modifier = Modifier.height(dimen_12))
+            Spacer(modifier = Modifier.height(12.dp))
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.Center
             ) {
                 TextMedium(
-                    text = stringResource(id = R.string.dont_have_an_account), color = grey30
+                    text = stringResource(id = R.string.dont_have_an_account), color = grey
                 )
 
-                Spacer(modifier = Modifier.width(dimen_5))
+                Spacer(modifier = Modifier.width(5.dp))
                 TextMedium(text = stringResource(id = R.string.sign_up),
-                    color = primaryBlue,
+                    color = primaryBrown,
                     onTextClick = {
                         navController.navigate("SignUp Screen")
                     })
@@ -114,13 +128,8 @@ fun LoginScreen(navController: NavController) {
         }
 
         UserAgreementText(
-            color = grey30,
             modifier = Modifier.fillMaxWidth()
         )
-
-        /*LaunchedEffect(key1 = userAgreement, block = {
-            loginViewModel.fetchData()
-        })*/
     }
 }
 
@@ -128,7 +137,7 @@ fun LoginScreen(navController: NavController) {
 @Composable
 fun LoginPreview() {
     val navController = rememberNavController()
-    NVCPatientAppTheme {
+    RideMateTheme {
         Surface(
             modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background
         ) {

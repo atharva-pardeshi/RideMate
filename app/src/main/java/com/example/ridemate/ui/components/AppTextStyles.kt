@@ -12,16 +12,18 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.sp
+import com.example.ridemate.ui.theme.lightGrey20
+import com.example.ridemate.ui.theme.primaryBlack
 
 @Composable
 fun TitleBold(
     modifier: Modifier = Modifier,
     text: String = "",
-    color: Color = Color.Black,
+    color: Color = primaryBlack,
     alignment: TextAlign = TextAlign.Center,
     fontSize: TextUnit = 12.sp,
     onTextClick: () -> Unit = {},
@@ -37,7 +39,6 @@ fun TitleBold(
             onTextClick()
         },
         color = color,
-        fontFamily = FontFamily(Font.gilroy_bold),
         textAlign = alignment,
         fontSize = fontSize
     )
@@ -47,7 +48,7 @@ fun TitleBold(
 fun TextMedium(
     modifier: Modifier = Modifier,
     text: String = "",
-    color: Color = black,
+    color: Color = primaryBlack,
     alignment: TextAlign = TextAlign.Center,
     fontSize: TextUnit = 12.sp,
     onTextClick: () -> Unit = {},
@@ -64,7 +65,6 @@ fun TextMedium(
                 onTextClick()
             },
         color = color,
-        fontFamily = FontFamily(Font.gilroy_medium),
         textAlign = alignment,
         fontSize = fontSize,
         maxLines = 1
@@ -74,8 +74,8 @@ fun TextMedium(
 @Composable
 fun UserAgreementText(
     modifier: Modifier = Modifier,
-    text: String = stringResource(id = R.string.read_user_license_agreement),
-    color: Color = grey30,
+    text: String = "",
+    color: Color = lightGrey20,
     alignment: TextAlign = TextAlign.Center,
     fontSize: TextUnit = 12.sp
 ) {
@@ -89,7 +89,6 @@ fun UserAgreementText(
                 context.startActivity(intent)
             },
         color = color,
-        fontFamily = FontFamily(Font.gilroy_medium),
         textAlign = alignment,
         fontSize = fontSize,
         maxLines = 1
@@ -100,7 +99,7 @@ fun UserAgreementText(
 fun TextNormal(
     modifier: Modifier = Modifier,
     text: String = "",
-    color: Color = black,
+    color: Color = primaryBlack,
     alignment: TextAlign = TextAlign.Center,
     fontSize: TextUnit = 12.sp,
     onTextClick: () -> Unit = {},
@@ -116,13 +115,12 @@ fun TextNormal(
             onTextClick()
         },
         color = color,
-        fontFamily = FontFamily(Font.gilroy_regular),
         textAlign = alignment,
         fontSize = fontSize
     )
 }
 
-@MultiplePreviews
+@Preview
 @Composable
 fun PreviewTextStyles() {
     TitleBold(text = "Hello World")
