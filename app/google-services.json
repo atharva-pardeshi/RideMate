@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "172328211992",
+    "project_id": "ridemate-fb0b7",
+    "storage_bucket": "ridemate-fb0b7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:172328211992:android:ae2debb819a82e4598956d",
+        "android_client_info": {
+          "package_name": "com.example.ridemate"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBAoLAj5pyvwdXWCgVZg7vNISf1ms3leKM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
