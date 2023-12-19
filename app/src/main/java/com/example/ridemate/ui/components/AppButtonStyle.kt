@@ -102,7 +102,7 @@ fun NVCButton(
     })
 }
 
-@Composable
+/*@Composable
 fun NVCImageButton(
     modifier: Modifier = Modifier,
     providerName: String = "",
@@ -169,7 +169,7 @@ fun NVCImageButton(
             }
         }
     }
-}
+}*/
 
 @Composable
 fun NVCCheckbox(
@@ -242,9 +242,9 @@ fun PreviewImageButton() {
             .fillMaxWidth()
             .background(white)
     ) {
-        NVCImageButton(providerName = "test",
+        /*NVCImageButton(providerName = "test",
             specialization = "test",
             users = "100",
-            onButtonClick = {})
+            onButtonClick = {})*/
     }
 }

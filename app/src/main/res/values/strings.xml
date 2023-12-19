@@ -51,4 +51,9 @@
 <string name="reset_password">Reset Password</string>
     <string name="mobile_number">Mobile</string>
     <string name="enter_mobile_number">Enter Mobile Number</string>
+    <string name="by_continuing_i_agree_to_the">By continuing, I agree to the</string>
+    <string name="terms_Of_use">Terms Of Use</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="having_trouble_logging_in">Having trouble logging in?</string>
+    <string name="get_help">Get help</string>
 </resources>
