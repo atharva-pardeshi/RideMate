@@ -77,10 +77,8 @@ fun OutlinedMobileTextField(
     TextField(
         value = value,
         onValueChange = {
-            if (it.length <= 10) {
                 value = it
-                onValueChange(it)
-            }
+                onValueChange(value)
         },
         placeholder = {
             Text(text = hint, color = Color.Gray)

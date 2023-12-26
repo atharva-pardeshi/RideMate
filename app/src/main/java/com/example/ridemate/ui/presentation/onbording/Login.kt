@@ -1,5 +1,6 @@
 package com.example.ridemate.ui.presentation.onbording
 
+import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import androidx.compose.foundation.Image
@@ -16,6 +17,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -38,14 +40,24 @@ import com.example.ridemate.ui.theme.RideMateTheme
 import com.example.ridemate.ui.theme.grey
 import com.example.ridemate.ui.theme.primaryBrown
 import com.example.ridemate.ui.theme.white
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.PhoneAuthOptions
+import com.google.firebase.auth.PhoneAuthProvider
+import java.util.concurrent.TimeUnit
 
 @Composable
 fun LoginScreen(navController: NavController) {
 
     val context = LocalContext.current
     val termsOfUse = remember { Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com/")) }
-    val privacyPolicy = remember { Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com/")) }
+    val privacyPolicy =
+        remember { Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com/")) }
     val getHelp = remember { Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com/")) }
+    val phoneNumber = remember {
+        mutableStateOf("")
+    }
+    val mAuth: FirebaseAuth = FirebaseAuth.getInstance()
+    lateinit var callbacks: PhoneAuthProvider.OnVerificationStateChangedCallbacks
 
     Column(
         modifier = Modifier.fillMaxSize(), verticalArrangement = Arrangement.SpaceBetween
@@ -74,7 +86,7 @@ fun LoginScreen(navController: NavController) {
 
                 Spacer(modifier = Modifier.height(30.dp))
                 OutlinedMobileTextField(modifier = Modifier.fillMaxWidth(), onValueChange = {
-
+                    phoneNumber.value = it
                 })
 
                 Spacer(modifier = Modifier.height(12.dp))
@@ -94,10 +106,12 @@ fun LoginScreen(navController: NavController) {
 
                         Spacer(modifier = Modifier.width(5.dp))
                         TextBold(
-                            text = stringResource(id = R.string.terms_Of_use), fontSize = 16.sp,
+                            text = stringResource(id = R.string.terms_Of_use),
+                            fontSize = 16.sp,
                             modifier = Modifier.clickable {
                                 context.startActivity(termsOfUse)
-                            }
+                            },
+                            color = primaryBrown
                         )
 
                         Spacer(modifier = Modifier.width(5.dp))
@@ -107,10 +121,12 @@ fun LoginScreen(navController: NavController) {
                     }
 
                     TextBold(
-                        text = stringResource(id = R.string.privacy_policy), fontSize = 16.sp,
+                        text = stringResource(id = R.string.privacy_policy),
+                        fontSize = 16.sp,
                         modifier = Modifier.clickable {
                             context.startActivity(privacyPolicy)
-                        }
+                        },
+                        color = primaryBrown
                     )
                 }
             }
@@ -122,11 +138,14 @@ fun LoginScreen(navController: NavController) {
                 text = stringResource(id = R.string.sign_in),
                 textColor = white,
                 onButtonClick = {
-//                    navController.navigate("Home Screen")
+                    val number = "+91${phoneNumber.value}"
+                    sendVerificationCode(number, mAuth, context as Activity, callbacks)
+                    navController.navigate("OTP Screen")
                 })
 
             Row(
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier
+                    .fillMaxWidth()
                     .padding(16.dp)
             ) {
                 TextMedium(
@@ -146,6 +165,21 @@ fun LoginScreen(navController: NavController) {
             modifier = Modifier.fillMaxWidth()
         )
     }
+}
+
+fun sendVerificationCode(
+    number: String,
+    auth: FirebaseAuth,
+    activity: Activity,
+    callbacks: PhoneAuthProvider.OnVerificationStateChangedCallbacks
+) {
+
+    val options = PhoneAuthOptions.newBuilder(auth).setPhoneNumber(number) // Phone number to verify
+        .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
+        .setActivity(activity) // Activity (for callback binding)
+        .setCallbacks(callbacks) // OnVerificationStateChangedCallbacks
+        .build()
+    PhoneAuthProvider.verifyPhoneNumber(options)
 }
 
 @Preview

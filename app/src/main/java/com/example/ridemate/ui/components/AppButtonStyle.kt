@@ -1,17 +1,12 @@
 package com.example.ridemate.ui.components
 
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -31,15 +26,10 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.ColorFilter
-import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.ridemate.R
 import com.example.ridemate.ui.theme.lightBrown20
 import com.example.ridemate.ui.theme.lightBrown30
 import com.example.ridemate.ui.theme.lightGrey20
@@ -88,18 +78,21 @@ fun NVCButton(
     textColor: Color = primaryBrown,
     onButtonClick: () -> Unit = {},
     buttonColor: Color = primaryBrown,
-    borderColor: Color = primaryBrown
+    borderColor: Color = primaryBrown,
+    enable: Boolean = true
 ) {
 
-    Button(modifier = modifier, onClick = {
-        onButtonClick()
-    }, shape = RoundedCornerShape(5.dp), colors = ButtonDefaults.buttonColors(
-        contentColor = textColor, containerColor = buttonColor
-    ), border = BorderStroke(1.dp, borderColor), content = {
-        TextMedium(text = text, color = textColor, fontSize = textSize, onTextClick = {
+    Button(
+        modifier = modifier, onClick = {
             onButtonClick()
-        })
-    })
+        }, shape = RoundedCornerShape(5.dp), colors = ButtonDefaults.buttonColors(
+            contentColor = textColor, containerColor = buttonColor
+        ), border = BorderStroke(1.dp, borderColor), content = {
+            TextMedium(text = text, color = textColor, fontSize = textSize, onTextClick = {
+                onButtonClick()
+            })
+        }, enabled = enable
+    )
 }
 
 /*@Composable
