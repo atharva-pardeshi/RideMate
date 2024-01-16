@@ -22,4 +22,4 @@ MIT License
 Contact:
 Have questions or suggestions? Reach out to us at atharvapardeshi206@gmail.com 📧.
 
-Happy cycling with RideMate! 🚵‍♀️🚵‍♂️
+Happy Motor Cycling with RideMate! 🚵‍♀️🚵‍♂️
