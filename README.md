@@ -1,7 +1,7 @@
 RideMate 🚴‍♂️
 
 Description:
-Welcome to the RideMate repository! RideMate is your ultimate companion for an enhanced biking experience. This open-source project is dedicated to supporting bike riders with features such as route navigation, ride tracking, gear recommendations, and community engagement.
+Welcome to the RideMate repository! RideMate is your ultimate companion for an enhanced biking experience. This open-source project is dedicated to supporting bike riders with features such as route navigation, ride tracking, gear recommendations, and community engagement
 
 Key Features:
 
@@ -22,4 +22,4 @@ MIT License
 Contact:
 Have questions or suggestions? Reach out to us at atharvapardeshi206@gmail.com 📧.
 
-Happy Motor Cycling with RideMate! 🚵‍♀️🚵‍♂️
+Happy Motorcycling with RideMate! 🚵‍♀️🚵‍♂️
